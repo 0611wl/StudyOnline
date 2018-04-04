@@ -23,6 +23,12 @@ import com.study.utils.GsonUtil;
 
 @Controller
 public class ChapterController {
+	/**
+	 * 获取课程的所有章
+	 * @param courseId
+	 * @param response
+	 * @throws IOException
+	 */
 	@RequestMapping("getCourseChapters.action")
 	public void getCourseChapters(int courseId,HttpServletResponse response) throws IOException{
 		if(courseId == 0) return;
