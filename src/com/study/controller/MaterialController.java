@@ -39,8 +39,10 @@ public class MaterialController {
 			mav.addObject("msg","上传失败");
 			return mav;
 		}
+		//课程
 		Course course  = (Course)request.getSession().getAttribute("course");
 		Material material = new Material();
+		//设置材料名
 		material.setMaterialName(file.getOriginalFilename());
 		String multipartFile = file.getContentType();
 		MaterialType materialType = MaterialType.valueOfType(multipartFile);
