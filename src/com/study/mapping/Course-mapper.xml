@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.dao.CourseDao">
+	<select id="courseList" resultType="com.study.entitys.Course">
+		select C.*,T.name as teacherName from course as C,Teacher as T,course2teacher as CT where CT.courseId = C.courseId and CT.teacherId = T.teacherId;
+	</select>
+	<select id="course2Student" resultType="com.study.entitys.o2o.Student2Course">
+		select S.* from student2Course as S;
+	</select>
+	<select id="getCourseChapters" resultType="com.study.entitys.o2o.Chapter2Course">
+		select CC.* from chapter2course as CC,course as C where C.courseId=CC.courseId;
+	</select>
+	<select id="getMaterials" resultType="com.study.entitys.o2o.Material2Course">
+		select MC.* from material2course as MC,course as C where c.courseId=MC.courseId;
+	</select>
+</mapper>

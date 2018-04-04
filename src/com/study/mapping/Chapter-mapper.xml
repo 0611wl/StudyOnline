@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.dao.ChapterDao">
+	<select id="getAllChapter" resultType="com.study.entitys.Chapter">
+		select * from chapter
+	</select>
+	<select id="getChpater2Course" resultType="com.study.entitys.o2o.Chapter2Course">
+		select CC.* from chapter2course as CC,chapter as C where C.chapterId=CC.chapterId;
+	</select>
+	<select id="getChapterMaterials" resultType="com.study.entitys.o2o.Material2Chapter">
+		select MC.materialId from chapter as C,material2chapter as MC where C.chapterId=MC.chapterId and C.chapterId=#{chapterId} 
+	</select>
+</mapper>

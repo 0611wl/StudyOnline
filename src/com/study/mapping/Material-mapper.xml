@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.dao.MaterialDao">
+	<insert id="uploadMaterial">
+		insert into material(materialType,materialName,materialPath)
+			values(#{materialType},#{materialName},#{materialPath})
+	</insert>
+	<insert id="uploadMaterial2Course">
+		insert into material2course(materialId,courseId) values(#{materialId},#{courseId})
+	</insert>
+	<select id="getMaterialChapters" resultType="com.study.entitys.o2o.Material2Chapter">
+		select MC.chapterId from material as M,material2chapter as MC where MC.materialId=M.materialId and M.materialId=#{materialId}
+	</select>
+	<select id="getAllMaterial" resultType="com.study.entitys.material.Material">
+		select * from material
+	</select>
+	<select id="lastMaterialId" resultType="java.lang.Integer">
+		select materialId from material where material.materialName=#{materialName} and materialType=#{materialType}
+	</select>
+	
+</mapper>

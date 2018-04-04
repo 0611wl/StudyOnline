@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.dao.TeacherDao">
+	<select id="getAllTeachers" resultMap="teacher">
+		select T.* from teacher as T; 
+	</select>
+	<resultMap id="teacher" type="com.study.entitys.Teacher">
+		<id property="teacherId" column="teacherId"/>
+		<result property="password" column="password"/>
+		<result property="faculty" column="faculty"/>
+		<result property="specialize" column="specialize"/>
+		<result property="telphone" column="telphone"/>
+		<result property="email" column="email"/>
+		<collection property="courses" ofType="com.study.entitys.Course" javaType="ArrayList" column="teacherId" select="courses">
+		</collection>
+	</resultMap>
+	<select id="courses" resultType="com.study.entitys.Course">
+		select C.* from course as C,course2teacher as CT where CT.teacherId=#{teacherId} and CT.courseId=C.courseID
+	</select>
+</mapper>
